@@ -33,9 +33,7 @@ services:
             - "5060:5060/tcp"
         links:
             - mysql
-        depends_on:
-            mysql:
-                condition: service_healthy
+
     web:
         build:
             context: ./web
@@ -57,9 +55,7 @@ services:
             - 80:80
         links:
             - mysql
-        depends_on:
-            mysql:
-                condition: service_healthy
+
     mysql:
         build:
             context: ./mysql
@@ -86,9 +82,6 @@ services:
         restart: always
         links:
             - mysql
-        depends_on:
-            mysql:
-                condition: service_healthy
         environment:
             - PMA_HOST=mysql
             - PMA_USER=root
